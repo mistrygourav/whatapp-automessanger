@@ -17,11 +17,14 @@ if (!fs.existsSync(messagePath)) {
 }
 
 const messages = JSON.parse(fs.readFileSync(messagePath));
-const nowUTC = new Date();
-const offset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
-const nowIST = new Date(nowUTC.getTime() + offset);
-const currentTime = nowIST.toTimeString().substring(0, 5); // HH:MM
-console.log(nowIST, currentTime, messages)
+const now = new Date();
+
+// Convert UTC to IST (UTC+5:30)
+const istTime = new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
+const currentTime = istTime.toTimeString().substring(0, 5);
+console.log('UTC Time:', now.toTimeString().substring(0, 5));
+console.log('IST Time:', currentTime);
+console.log('Messages:', messages);
 
 async function sendScheduledMessages() {
   for (const msg of messages) {
