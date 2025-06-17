@@ -19,26 +19,7 @@ const axiosInstance = axios.create({
 });
 
 export async function uploadMedia(filePath, mimeType) {
-  const form = new FormData();
-  form.append('file', fs.createReadStream(filePath));
-  form.append('type', mimeType);
-
-  const res = await axiosInstance.post(
-    `https://graph.facebook.com/v18.0/${phoneNumberId}/media`,
-    form,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        ...form.getHeaders()
-      }
-    }
-  );
-  return res.data.id;
-}
-
-export async function uploadMedia(filePath, mimeType) {
   try {
-    
     const form = new FormData();
     form.append('file', fs.createReadStream(filePath));
     form.append('type', mimeType);
@@ -61,7 +42,6 @@ export async function uploadMedia(filePath, mimeType) {
     return null;
   }
 }
-
 
 export async function sendText(text) {
   const res = await axiosInstance.post(
