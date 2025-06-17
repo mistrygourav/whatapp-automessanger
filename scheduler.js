@@ -19,7 +19,7 @@ if (!fs.existsSync(messagePath)) {
 const messages = JSON.parse(fs.readFileSync(messagePath));
 const now = new Date();
 const currentTime = now.toTimeString().substring(0, 5);
-console.log(messages)
+console.log(currentTime, messages)
 
 async function sendScheduledMessages() {
   for (const msg of messages) {
