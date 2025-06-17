@@ -1,18 +1,18 @@
 [
   {
-    "time": "07:00",
+    "time": "07:30",
     "text": "Good morning sunshine. I hope things are going well to your end. I am always there for you. Cheering for you and always standing by you side. I will always love you Jamun. \ud83c\udf1e \ud83d\udc96",
-    "audio": "audios/morning1.ogg",
-    "image": "images/goodmorning.jpg"
+    "audio": "audios/audio_1.opus",
+    "image": "images/OSCAR_11.jpg"
   },
   {
     "time": "13:00",
     "text": "Hi Babu. Hope lunch kar leye hoga tumne. Nai ki ho to kar lena, warna kam nai kar paogi. I am doing well i suppose, really waiting for you to meet. I miss you sona \ud83c\udf71",
-    "audio": "audios/lunch1.ogg"
+    "audio": "audios/audio_2.opus"
   },
   {
-    "time": "23:37",
+    "time": "22:30",
     "text": "Good night babu. I love you so much. Sending you my love and care. I know aaj bahut exhauting hua hoga kam. But I will be there for you. Can't wait to see you again. Kaas tum yaha mere saat reheti, tumhe joor se hug kar leta. Jaldi aaraha hu tumhare pas. You take care okay. I am there only by your side \ud83c\udf19",
-    "image": "images/goodnight.jpg"
+    "image": "images/OSCAR_15.jpg"
   }
 ]

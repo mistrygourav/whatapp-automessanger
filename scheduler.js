@@ -5,7 +5,7 @@ import { sendText, sendAudio, sendImage, uploadMedia } from './utils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const startDate = new Date('2025-06-17');
+const startDate = new Date('2025-06-19');
 const today = new Date();
 const dayIndex = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
 const dayFile = `messages/day${dayIndex}.json`;
