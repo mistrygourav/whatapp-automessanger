@@ -17,9 +17,11 @@ if (!fs.existsSync(messagePath)) {
 }
 
 const messages = JSON.parse(fs.readFileSync(messagePath));
-const now = new Date();
-const currentTime = now.toTimeString().substring(0, 5);
-console.log(currentTime, messages)
+const nowUTC = new Date();
+const offset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
+const nowIST = new Date(nowUTC.getTime() + offset);
+const currentTime = nowIST.toTimeString().substring(0, 5); // HH:MM
+console.log(nowIST, currentTime, messages)
 
 async function sendScheduledMessages() {
   for (const msg of messages) {
