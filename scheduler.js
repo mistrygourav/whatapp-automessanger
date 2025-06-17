@@ -45,6 +45,6 @@ async function sendScheduledMessages() {
 
 // Execute the async function
 sendScheduledMessages().catch(error => {
-  console.error('Error sending messages:', error);
+  console.error('Error sending messages:', error.messages);
   process.exit(1);
 });
