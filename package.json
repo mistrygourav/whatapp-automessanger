@@ -2,7 +2,6 @@
   "name": "whatsapp-weekly-scheduler",
   "version": "1.0.0",
   "main": "scheduler.js",
-  {
   "type": "module",
   "scripts": {
     "start": "node scheduler.js"
