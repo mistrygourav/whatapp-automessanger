@@ -38,12 +38,13 @@ export async function uploadMedia(filePath, mimeType) {
     console.log('📦 Upload success:', res.data);
     return res.data.id;
   } catch (err) {
-    console.error('❌ Upload failed:', err.response.data || err.message);
+    console.error('❌ Upload failed:', err || err.message);
     return null;
   }
 }
 
 export async function sendText(text) {
+  try {
   const res = await axiosInstance.post(
     `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`,
     {
@@ -60,9 +61,14 @@ export async function sendText(text) {
     }
   );
   console.log('📤 text send response:', res.data);
+  }
+  catch (err) {
+    console.error('❌ text message failed:', err || err.message);
+    return null;
 }
 
 export async function sendAudio(mediaId) {
+  try{
   const res = await axiosInstance.post(
     `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`,
     {
@@ -79,9 +85,14 @@ export async function sendAudio(mediaId) {
     }
   );
   console.log('📤 Audio send response:', res.data);
+  }
+  catch (err) {
+    console.error('❌ audio message failed:', err || err.message);
+    return null;
 }
 
 export async function sendImage(mediaId) {
+  try{
   await axiosInstance.post(
     `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`,
     {
@@ -97,4 +108,8 @@ export async function sendImage(mediaId) {
       }
     }
   );
+  }
+  catch (err) {
+    console.error('❌ image failed:', err || err.message);
+    return null;
 }
