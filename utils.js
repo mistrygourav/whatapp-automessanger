@@ -1,8 +1,9 @@
-const axios = require('axios');
-const fs = require('fs');
-const FormData = require('form-data');
-const https = require('https');
-require('dotenv').config();
+import axios from 'axios';
+import fs from 'fs';
+import FormData from 'form-data';
+import https from 'https';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const accessToken = process.env.ACCESS_TOKEN;
 const phoneNumberId = process.env.PHONE_NUMBER_ID;
@@ -17,7 +18,7 @@ const axiosInstance = axios.create({
   httpsAgent: new https.Agent({ rejectUnauthorized: false })
 });
 
-async function uploadMedia(filePath, mimeType) {
+export async function uploadMedia(filePath, mimeType) {
   try {
     const form = new FormData();
     form.append('file', fs.createReadStream(filePath));
@@ -33,16 +34,15 @@ async function uploadMedia(filePath, mimeType) {
         }
       }
     );
-
     console.log('📦 Upload success:', res.data);
     return res.data.id;
   } catch (err) {
-    console.error('❌ Upload failed:', err || err.message);
+    console.error('❌ Upload failed:', err?.response?.data || err.message);
     return null;
   }
 }
 
-async function sendText(text) {
+export async function sendText(text) {
   try {
     const res = await axiosInstance.post(
       `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`,
@@ -59,14 +59,13 @@ async function sendText(text) {
         }
       }
     );
-    console.log('📤 text send response:', res.data);
+    console.log('📤 Text sent response:', res.data);
   } catch (err) {
-    console.error('❌ text message failed:', err || err.message);
-    return null;
+    console.error('❌ Text message failed:', err?.response?.data || err.message);
   }
 }
 
-async function sendAudio(mediaId) {
+export async function sendAudio(mediaId) {
   try {
     const res = await axiosInstance.post(
       `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`,
@@ -83,14 +82,13 @@ async function sendAudio(mediaId) {
         }
       }
     );
-    console.log('📤 Audio send response:', res.data);
+    console.log('📤 Audio sent response:', res.data);
   } catch (err) {
-    console.error('❌ audio message failed:', err || err.message);
-    return null;
+    console.error('❌ Audio message failed:', err?.response?.data || err.message);
   }
 }
 
-async function sendImage(mediaId) {
+export async function sendImage(mediaId) {
   try {
     const res = await axiosInstance.post(
       `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`,
@@ -107,16 +105,8 @@ async function sendImage(mediaId) {
         }
       }
     );
-    console.log('📤 Image send response:', res.data);
+    console.log('📤 Image sent response:', res.data);
   } catch (err) {
-    console.error('❌ image failed:', err || err.message);
-    return null;
+    console.error('❌ Image message failed:', err?.response?.data || err.message);
   }
 }
-
-module.exports = {
-  uploadMedia,
-  sendText,
-  sendAudio,
-  sendImage
-};
