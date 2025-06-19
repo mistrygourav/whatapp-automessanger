@@ -1,8 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const { sendText, sendAudio, sendImage, uploadMedia } = require('./utils');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { sendText, sendAudio, sendImage, uploadMedia } from './utils.js';
 
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const startDate = new Date('2025-06-19');
 const today = new Date();
@@ -49,6 +51,6 @@ async function sendScheduledMessages() {
 }
 
 sendScheduledMessages().catch(error => {
-  console.error('Error sending messages:', error);
+  console.error('❌ Error sending messages:', error);
   process.exit(1);
 });
